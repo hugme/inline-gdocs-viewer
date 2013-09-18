@@ -42,7 +42,6 @@ class InlineGoogleSpreadsheetViewerPlugin {
             $url .= "&single=true&gid={$options['gid']}";
         }
         $resp = wp_remote_get($url);
-	if (is_wp_error($resp)) echo $resp->get_error_message(); }
 	if (is_wp_error($resp)) { echo $resp->get_error_message(); } // don't bail, let me see the error
         $r = (function_exists('str_getcsv')) ? str_getcsv($resp['body']) : $this->str_getcsv($resp['body']);
         if ($options['strip'] > 0) { $r = array_slice($r, $options['strip']); } // discard
